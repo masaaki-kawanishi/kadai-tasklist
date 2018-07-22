@@ -34,13 +34,13 @@ public class ShowServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = daoutil.createEntityManager();
 
-		 message m = em.find(message.class,(request.getParameter("tasks")));
+		 message m = em.find(message.class,request.getParameter("tasks"));
 
 		em.close();
 
 		request.setAttribute("message", m);
 
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/topview/show.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/show.jsp");
 	    rd. forward(request,response);
 	}
 }

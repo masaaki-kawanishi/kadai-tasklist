@@ -42,10 +42,10 @@ public class IndexServlet extends HttpServlet {
 
 		request.setAttribute("messages", messages);
 
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/topview/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/index.jsp");
 		rd.forward(request, response);
 	}
 
-	;
+
 
 }

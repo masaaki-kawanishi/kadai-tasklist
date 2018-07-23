@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.daoutil;
-import task.message;
+import task.tasks;
 
 /**
  * Servlet implementation class EditServlet
@@ -34,13 +34,17 @@ public class EditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = daoutil.createEntityManager();
 
-		message m = em.find(message.class,request.getParameter("tasks"));
+		tasks m = em.find(tasks.class, Integer.parseInt(request.getParameter("id")));
+
 
 		em.close();
 
-		request.setAttribute("message", m);
-		request.setAttribute("_token", request.getSession().getId());
-		request.getSession().setAttribute("message_tasks", m.getTasks());
+		request.setAttribute("tasks", m);
+		request.setAttribute("_token",request.getSession().getId());
+
+		if(m != null){
+		request.getSession().setAttribute("tasks_id", m.getId());
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/edit.jsp");
 		rd.forward(request, response);

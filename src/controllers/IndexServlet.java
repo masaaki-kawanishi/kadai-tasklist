@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.daoutil;
-import task.message;
+import task.tasks;
 
 /**
  * Servlet implementation class IndexServlet
@@ -35,12 +35,12 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = daoutil.createEntityManager();
 
-		List<message> messages = em.createNamedQuery("getAllmessages",message.class)
+		List<tasks> tasks = em.createNamedQuery("getAlltasks",tasks.class)
 				.getResultList();
 
 		em.close();
 
-		request.setAttribute("messages", messages);
+		request.setAttribute("taskname", tasks);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/index.jsp");
 		rd.forward(request, response);

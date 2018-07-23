@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.daoutil;
-import task.message;
+import task.tasks;
 
 /**
  * Servlet implementation class CreateServlet
@@ -36,13 +37,17 @@ public class CreateServlet extends HttpServlet {
     	if(_token != null && _token.equals(request.getSession().getId())){
     		EntityManager em = daoutil.createEntityManager();
 
-    		message m = new message();
+    		tasks m = new tasks();
 
-    		String tasks = request.getParameter("tasks");
-    		m.setTasks(tasks);
+    		String taskname = request.getParameter("taskname");
+    		m.setTaskname(taskname);
 
     		String content = request.getParameter("content");
     		m.setContent(content);
+
+    		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+    		m.setCreated_at(currentTime);
+    		m.setUpdated_at(currentTime);
 
     		em.getTransaction().begin();
     		em.persist(m);

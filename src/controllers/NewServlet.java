@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import task.message;
+import task.tasks;
 
 /**
  * Servlet implementation class NewServlet
@@ -31,7 +31,7 @@ public class NewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   request.setAttribute("_token", request.getSession().getId());
-	   request.setAttribute("message", new message());
+	   request.setAttribute("tasks", new tasks());
 
 	   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/new.jsp");
 	   rd.forward(request, response);

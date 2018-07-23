@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.daoutil;
-import task.message;
+import task.tasks;
 
 /**
  * Servlet implementation class ShowServlet
@@ -34,11 +34,11 @@ public class ShowServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = daoutil.createEntityManager();
 
-		 message m = em.find(message.class,request.getParameter("tasks"));
+		 tasks m = em.find(tasks.class,Integer.parseInt(request.getParameter("id")));
 
 		em.close();
 
-		request.setAttribute("message", m);
+		request.setAttribute("tasks", m);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/show.jsp");
 	    rd. forward(request,response);

@@ -58,6 +58,7 @@ public class IndexServlet extends HttpServlet {
 			request.getSession().removeAttribute("flush");
 
 		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topview/index.jsp");
 		rd.forward(request, response);
 

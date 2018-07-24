@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/app.jsp">
   <c:param name ="content">
+  <% request.setCharacterEncoding("UTF-8"); %>
     <c:choose>
       <c:when test="${tasks != null}">
        <h2>id : ${tasks.id} のタスクの詳細ページ</h2>

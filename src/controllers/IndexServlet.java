@@ -43,12 +43,14 @@ public class IndexServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 		}
 
+
 		List<tasks> tasks = em.createNamedQuery("getAlltasks", tasks.class).setFirstResult(15 * (page - 1))
 				.setMaxResults(15).getResultList();
 
-		Long tasks_count =  em.createNamedQuery("getTasksCount", Long.class).getSingleResult();
+		long tasks_count =  em.createNamedQuery("getTasksCount", Long.class).getSingleResult();
 
 		em.close();
+
 
 		request.setAttribute("taskname", tasks);
 		request.setAttribute("tasks_count", tasks_count);
